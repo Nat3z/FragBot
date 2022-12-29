@@ -59,3 +59,8 @@ It is recommended to use Docker and the DockerFile for deployment, as many of th
 1. Run your package manger's start script. (ex: `pnpm start`, `npm start`, `yarn start`) **OR** go into the dist/src/ directory and use **pm2** to start `bot.js`
 
 Remember to create an `accounts.json` in the root of the project, following the `accounts.json.example` file's syntax. Along with that, make sure you have created a `.env` file and have filled out the fields defined in the `.env.example` file. 
+
+# Slash Commands
+`/deploy` - Deploys a Frag Bot to the server.
+
+`/list` - Lists all Frag Bots that have been defined to the `accounts.json` file.
