@@ -22,8 +22,9 @@ It should look like this:
 declare const loader: (registryOrVersion: any) => typeof ChatMessage
 ```
 
-*p.s. there is definitely a more elegant way of doing this. I don't know the mineflayer codebase enough to provide those types, and someone should definitely fix the TypeScript definitions in a future release.*
+**When using the built-in build script, the script `configure.bot.js` will automatically do these steps for you.**
 
+*p.s. there is definitely a more elegant way of doing this. I don't know the mineflayer codebase enough to provide those types, and someone should definitely fix the TypeScript definitions in a future release.*
 
 # Minimum/Recommended Computer Specs
 
@@ -46,3 +47,15 @@ Currently, I am using a Google Cloud platform Compute Engine on the free tier to
 | Repl.it       | Has a free VM for deployment.                                   | Repositories are public, provided VMs are insufficient to deploy bots, and you are required to create a web server.            | ❌           |
 | Vercel        | Has a free tier for deploying apps.                             | Platform is serverless, meaning that long-term connections (e.g. connecting to Discord & Minecraft) are impossible.            | ❌           |
 | Heroku        | VMs are powerful and sufficient for deploying the bots.         | Platform is web-focused, meaning that you need to have a web server deployed and have enough Dyno Hours to pay for the uptime. | ➖           |
+
+**tl;dr: any platform that gives you full access to the VM is usually sufficient.**
+
+# How to Deploy
+It is recommended to use Docker and the DockerFile for deployment, as many of the steps are automated for you.
+
+1. Run your package manager's installation script. (ex: `pnpm install`, `npm ci`, `yarn install`)
+1. Create a build and adjust TypeScript definitions using your package manager. (ex: `pnpm build`, `npm build`, `yarn build`)
+1. (OPTIONAL) Move the .env file into the src build directory. **(REQUIRED FOR PM2)**
+1. Run your package manger's start script. (ex: `pnpm start`, `npm start`, `yarn start`) **OR** go into the dist/src/ directory and use **pm2** to start `bot.js`
+
+Remember to create an `accounts.json` in the root of the project, following the `accounts.json.example` file's syntax. Along with that, make sure you have created a `.env` file and filling out the fields defined in the `.env.example` file. 
